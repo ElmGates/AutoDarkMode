@@ -1,0 +1,72 @@
+VERSION 5.00
+Begin VB.Form kfms 
+   Caption         =   "开发模式说明"
+   ClientHeight    =   2715
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   4680
+   Icon            =   "kfms.frx":0000
+   LinkTopic       =   "Form3"
+   ScaleHeight     =   2715
+   ScaleWidth      =   4680
+   StartUpPosition =   3  '窗口缺省
+   Begin VB.CommandButton Command1 
+      Caption         =   "修改开发密码"
+      Height          =   495
+      Left            =   3840
+      TabIndex        =   3
+      Top             =   2160
+      Width           =   735
+   End
+   Begin VB.TextBox Text1 
+      Height          =   270
+      Left            =   1680
+      Locked          =   -1  'True
+      TabIndex        =   1
+      Text            =   "2761822421@local!@com"
+      Top             =   2400
+      Width           =   2055
+   End
+   Begin VB.Label Label2 
+      Caption         =   "解压密码复制区:"
+      Height          =   255
+      Left            =   120
+      TabIndex        =   2
+      Top             =   2400
+      Width           =   1455
+   End
+   Begin VB.Label Label1 
+      Caption         =   $"kfms.frx":B922
+      BeginProperty Font 
+         Name            =   "黑体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00808080&
+      Height          =   2175
+      Left            =   120
+      TabIndex        =   0
+      Top             =   120
+      Width           =   4455
+   End
+End
+Attribute VB_Name = "kfms"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+Private Sub Command1_Click()
+Randomize
+newp = CStr(Int(Rnd() * 10000000 + 89999999))
+passwd = CStr(InputBox("请输入新的密码:", "输入新密码", newp))
+Name ".\none.cfgr" As ".\none.txt"
+Open ".\none.txt" For Output As #2
+Print #2, CStr(passwd)
+Close #2
+Name ".\none.txt" As ".\none.cfgr"
+End Sub
+
